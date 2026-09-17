@@ -1,0 +1,297 @@
+<div class="product-grid">
+
+                <!-- Product 1 -->
+                <article class="product-card">
+
+                    <div class="product-image">
+                        <span class="product-badge">
+                            Bestseller
+                        </span>
+
+                        <img
+                            src="Images/baobab.jpeg"
+                            alt="Baobab body oil"
+                        >
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            Skincare
+                        </p>
+
+                        <h3>Baobab Body Oil</h3>
+
+                        <div class="rating">
+                            ★★★★★
+                            <span>(24)</span>
+                        </div>
+
+                        <p class="price">
+                            KSh 1,200
+                        </p>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Product 2 -->
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="Images/sheaglow.jpeg"
+                            alt="Shea glow body butter"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            Skincare
+                        </p>
+
+                        <h3>Shea Glow Body Butter</h3>
+
+                        <div class="rating">
+                            ★★★★★
+                            <span>(18)</span>
+                        </div>
+
+                        <p class="price">
+                            KSh 950
+                        </p>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Product 3 -->
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="Images/blacksoap.jpeg"
+                            alt="African black soap"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            Skincare
+                        </p>
+
+                        <h3>African Black Soap</h3>
+
+                        <div class="rating">
+                            ★★★★☆
+                            <span>(31)</span>
+                        </div>
+
+                        <p class="price">
+                            KSh 650
+                        </p>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Product 4 -->
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="Images/Rosemary.jpeg"
+                            alt="Rosemary hair oil"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            Hair Care
+                        </p>
+
+                        <h3>Rosemary Hair Oil</h3>
+
+                        <div class="rating">
+                            ★★★★★
+                            <span>(42)</span>
+                        </div>
+
+                        <p class="price">
+                            KSh 1,100
+                        </p>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Product 5 -->
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="Images/sandalwoodcandle.jpeg"
+                            alt="Sandalwood scented candle"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            Wellness
+                        </p>
+
+                        <h3>Sandalwood Candle</h3>
+
+                        <div class="rating">
+                            ★★★★★
+                            <span>(16)</span>
+                        </div>
+
+                        <p class="price">
+                            KSh 1,500
+                        </p>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Product 6 -->
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-badge">
+                            New
+                        </span>
+
+                        <img
+                            src="Images/lavender.jpeg"
+                            alt="Lavender bath set"
+                        >
+
+                        </div>
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            Wellness
+                        </p>
+
+                        <h3>Lavender Bath Set</h3>
+
+                        <div class="rating">
+                            ★★★★★
+                            <span>(12)</span>
+                        </div>
+
+                        <p class="price">
+                            KSh 1,800
+                        </p>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        function displayProducts(products){
+    productContainer.innerHTML = "";
+    if(products.length === 0){
+        "<p>No items available at the moment</p>"
+        return;
+    }
+    const htmlElements = products.map(product => {
+        return `
+        <div class="product_card">
+        <h3>${product.name}</h3>
+        <p><strong>Category: </strong>${product.category}</p>
+        <p>${product.description}</p>
+        <p><strong>${product.price}</strong></p>
+        </div>
+         `
+    })
+    productContainer.innerHTML = htmlElements.join("");
+};
+
+fetchCoffeeProducts();
+
+
+searchInput.addEventListener('input', () => {
+   
+
+<main>
+      <section class="menu_section">
+        <h2>Joe's Coffee Menu</h2>
+        <input type="text" id="searchMenu" placeholder="Search for the product you want">
+        <div id="product_cont">
+          loading...
+        </div>
+        <div id="menu_stats">
+
+        </div>
+      </section>
+      <!-- <button id="btn">Click here</button> -->
+    </main>
