@@ -6,7 +6,8 @@ const products = [
         price: 1200,
         category: "Body Care",
         description: "Nourishing oil inspired by African wellness traditions.",
-        image:"Images/baobab.jpeg"
+        image:"Images/baobab.jpeg",
+        isBestseller: true
     },
     {
         id: 2,
@@ -14,7 +15,8 @@ const products = [
         price: 950,
         category: "Body Care",
         description: "Rich body butter for soft, moisturized skin.",
-        image:"Images/sheaglow.jpeg"
+        image:"Images/sheaglow.jpeg",
+        isBestseller: true
     },
     {
         id: 3,
@@ -22,7 +24,8 @@ const products = [
         price: 650,
         category: "Skin Care",
         description: "A traditional cleansing soap.",
-        image:"Images/blacksoap.jpeg"
+        image:"Images/blacksoap.jpeg",
+        isBestseller: false
     },
     {
         id: 4,
@@ -30,7 +33,8 @@ const products = [
         price: 1100,
         category: "Hair Care",
         description: "A nourishing oil for your hair-care routine.",
-        image:"Images/Rosemary.jpeg"
+        image:"Images/Rosemary.jpeg",
+        isBestseller: true
     },
 
     {
@@ -39,7 +43,8 @@ const products = [
         price: 1500,
         category: "Wellness",
         description: "A sandalwood scented candle for deep relaxation.",
-        image:"Images/sandalwoodcandle.jpeg"
+        image:"Images/sandalwoodcandle.jpeg",
+        isBestseller: false
     },
 
     {
@@ -48,7 +53,8 @@ const products = [
         price: 1800,
         category: "Wellness",
         description: "A bath set that provides deep mental relaxation.",
-        image:"Images/lavender.jpeg"
+        image:"Images/lavender.jpeg",
+        isBestseller: false
     }
 ];
 

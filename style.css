@@ -308,6 +308,7 @@ button {
 
 .product-info {
     padding: 22px;
+    align-items: center;
 }
 
 .product-category {
@@ -333,16 +334,6 @@ button {
     color: #293127;
 }
 
-.rating {
-    color: #c49a45;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-}
-
-.rating span {
-    color: #777;
-    margin-left: 5px;
-}
 
 .price {
     font-size: 1.15rem;
@@ -351,7 +342,7 @@ button {
     margin-bottom: 15px;
 }
 
-.add-cart {
+.add-to-cart-btn {
     width: 100%;
 
     border: none;
@@ -368,11 +359,13 @@ button {
     transition: 0.3s ease;
 }
 
-.add-cart:hover {
+.add-to-cart-btn:hover {
     background-color: #5f6e4a;
 }
 
-
+.add-to-cart-btn:active{
+    background-color: #3f463d;
+}
 
 .categories-section {
     padding: 100px 30px;
