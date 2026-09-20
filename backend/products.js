@@ -56,6 +56,6 @@ const products = [
         image:"Images/lavender.jpeg",
         isBestseller: false
     }
-];
+]
 
 module.exports = products;

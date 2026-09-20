@@ -1,26 +1,22 @@
-const productContainer = document.querySelector("#product-container");
-const loadingMessage = document.querySelector("#loading-message");
-const errorMessage = document.querySelector("#error-message");
+function getProducts() {
 
-async function getProducts() {
-    try {
-       
-        loadingMessage.textContent = "Loading products...";
-        errorMessage.textContent = "";
+    $("#loading-message").text("Loading products...");
+    $("#error-message").text("");
 
-        const response = await fetch(
-            "http://localhost:3000/api/products"
-        );
+    $.ajax({
+        url: "http://localhost:3000/api/products",
+        method: "GET",
+        dataType: "json"
+    })
+    .done(function (products) {
 
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
+        $("#loading-message").text("");
 
-        const products = await response.json();
+        $("#product-container").empty();
 
+        products.forEach(function (product) {
 
-         products.forEach((product) => {
-             productContainer.innerHTML += `
+            const productCard = `
                 <article class="product-card">
                     <img src = "${product.image}" alt = "${product.name}" class="product-image">
                     <div class="product-info">
@@ -32,18 +28,20 @@ async function getProducts() {
                     </div>
                 </article>
             `;
-         })
 
-        loadingMessage.textContent = "";
+            $("#product-container").append(productCard);
+        });
+    })
+    .fail(function (xhr) {
 
-    } catch (error) {
+        $("#loading-message").text("");
 
-        loadingMessage.textContent = "";
-        errorMessage.textContent =
-            "Sorry, we could not load our products.";
+        $("#error-message").text(
+            `Could not load products. Error: ${xhr.status}`
+        );
 
-        console.error("Product loading failed:", error);
-    }
+    });
 }
-
-getProducts();
+$(function () {
+    getProducts();
+});
