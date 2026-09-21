@@ -352,6 +352,23 @@ button {
   display: flex;
 }
 
+.modal-cart-button{
+    width: 100%;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background-color: #7b8b62;
+    color: white;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
 
 .price {
     font-size: 1.15rem;

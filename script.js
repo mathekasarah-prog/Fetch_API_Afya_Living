@@ -105,7 +105,7 @@ function updateProducts() {
 
 
 function openProductModal(productId) {
-    
+    console.log("id:", productId, "found:", products.find(i => String(i.id) === String(productId)));
 
     const product = products.find((item) => {
         return item.id === productId;
@@ -174,4 +174,25 @@ productContainer.addEventListener("click", (event) => {
 
 categoryFilter.addEventListener("change", updateProducts);
 sortProducts.addEventListener("change", updateProducts);
+
+function closeProductModal() {
+    productModal.classList.remove("active");
+}
+
+modalClose.addEventListener("click", closeProductModal);
+
+let cart = [];
+
+function addToCart(productId) {
+  const product = products.find((p) => String(p.id) === String(productId));
+  if (!product) return;
+  cart.push(product);
+  console.log("Cart:", cart);
+}
+
+modalCartButton.addEventListener("click", () => {
+  addToCart(modalCartButton.dataset.productId);
+  closeProductModal();
+});
+
 displayProducts(products);
