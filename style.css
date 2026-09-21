@@ -347,7 +347,7 @@ button {
     margin-bottom: 15px;
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn, .view-product{
     width: 100%;
 
     border: none;
@@ -364,11 +364,11 @@ button {
     transition: 0.3s ease;
 }
 
-.add-to-cart-btn:hover {
+.add-to-cart-btn:hover,.view-product:hover {
     background-color: #5f6e4a;
 }
 
-.add-to-cart-btn:active{
+.add-to-cart-btn:active .view-product:active{
     background-color: #3f463d;
 }
 

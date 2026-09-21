@@ -58,10 +58,11 @@ const modalCartButton =
                     <div class="product-info">
                     <p class="product-category">Category: ${product.category}</p>
                     <h3 class ="product-name">${product.name}</h3>
-                    <p class ="product-rating>${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)}</p>
+                    <p class ="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)}</p>
                     <p class="product-description">${product.description}</p>
                     <p class= "product-price">KSh ${product.price.toLocaleString()}</p>
                     <button type="button" class="add-to-cart-btn">Add to Cart</button>
+                    <button type="button" class="view-product" data-product-id="${product.id}">View Details</button>
                     </div>
                 </article>
             `;
@@ -69,9 +70,8 @@ const modalCartButton =
         loadingMessage.style.display = "none"
             
 }
-displayProducts(products);
 
-console.log(productContainer, categoryFilter, sortProducts, loadingMessage, errorMessage, productModal, modalClose, modalCartButton);
+
 
 function updateProducts() {
 
@@ -102,3 +102,75 @@ function updateProducts() {
 
     displayProducts(filteredProducts);
 }
+
+
+function openProductModal(productId) {
+
+    const product = products.find((item) => {
+        return item.id === productId;
+    });
+
+    if (!product) return;
+
+    modalImage.src = product.image;
+    modalImage.alt = product.name;
+
+    modalCategory.textContent = product.category;
+    modalTitle.textContent = product.name;
+
+    modalRating.innerHTML =
+        `${"★".repeat(product.rating)}
+        <span>(${product.reviews})</span>`;
+
+    modalPrice.textContent =
+        `KSh ${product.price.toLocaleString()}`;
+
+    modalDescription.textContent = product.description;
+
+    modalCartButton.dataset.productId = product.id;
+
+    productModal.classList.add("active");
+}
+
+
+function closeProductModal() {
+    productModal.classList.remove("active");
+}
+
+modalClose.addEventListener("click", closeProductModal);
+
+productModal.addEventListener("click", (event) => {
+
+    if (event.target === productModal) {
+        closeProductModal();
+    }
+});
+
+
+productContainer.addEventListener("click", (event) => {
+
+    const button = event.target.closest(".view-product");
+
+    if (!button) return;
+
+    const productId = Number(button.dataset.productId);
+
+    openProductModal(productId);
+});
+
+
+
+productContainer.addEventListener("click", (event) => {
+
+    const button = event.target.closest(".view-product");
+
+    if (!button) return;
+
+    const productId = Number(button.dataset.productId);
+
+    openProductModal(productId);
+});
+
+categoryFilter.addEventListener("change", updateProducts);
+sortProducts.addEventListener("change", updateProducts);
+displayProducts(products);
