@@ -17,10 +17,7 @@ function getProducts() {
         products.forEach(function (product) {
             const productCard = `
                 <article class="product-card">
-                    <div class="card-image">
                     <img src = "${product.image}" alt = "${product.name}" class="product-image">
-                    ${product.badge? `<span class="product-badge">${product.badge}</span>`:""}
-                    </div>
                     <div class="product-info">
                     <p class="product-category">Category: ${product.category}</p>
                     <h3 class = "product-name">${product.name}</h3>
