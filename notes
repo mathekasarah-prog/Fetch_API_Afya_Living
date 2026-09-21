@@ -349,3 +349,40 @@ async function getProducts() {
 }
 
 getProducts();
+
+
+
+function getProducts() {
+
+    $("#loading-message").text("Loading products...");
+    $("#error-message").text("");
+
+    $.ajax({
+        url: "http://localhost:3000/api/products",
+        method: "GET",
+        dataType: "json"
+    })
+    .done(function (products) {
+
+        $("#loading-message").text("");
+
+        $("#product-container").empty();
+
+
+
+
+        $("#product-container").append(productCard);
+        });
+    })
+    .fail(function (xhr) {
+
+        $("#loading-message").text("");
+
+        $("#error-message").text(
+            `Could not load products. Error: ${xhr.status}`
+        );
+
+    });
+}
+$(function () {
+    getProducts();

@@ -308,8 +308,12 @@ button {
 
 .product-info {
     padding: 22px;
-    align-items: center;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   flex: 1;
 }
+
 
 .product-category {
     color: #899379;
@@ -329,6 +333,7 @@ button {
     font-size: 1.2rem;
     margin-bottom: 8px;
 }
+
 
 .product-info .price {
     color: #293127;
