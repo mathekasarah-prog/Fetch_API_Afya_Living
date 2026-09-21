@@ -105,6 +105,7 @@ function updateProducts() {
 
 
 function openProductModal(productId) {
+    
 
     const product = products.find((item) => {
         return item.id === productId;

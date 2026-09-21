@@ -339,6 +339,19 @@ button {
     color: #293127;
 }
 
+.product-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.product-modal.active {
+  display: flex;
+}
+
 
 .price {
     font-size: 1.15rem;
