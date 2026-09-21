@@ -106,6 +106,10 @@ button {
     background-color: #5f6e4a;
 }
 
+.hidden{
+    display: none;
+}
+
 
 .hero {
     min-height: 650px;

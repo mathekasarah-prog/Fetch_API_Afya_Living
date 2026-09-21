@@ -35,8 +35,13 @@
 
             <div class="nav-actions">
                 <button class="cart-button" type="button">
-                    🛒 Cart
+                    🛒 Cart <span id="cart-count">0</span>
                 </button>
+                <aside id="cart-panel" class="hidden">
+            <h3>Your Cart</h3>
+            <ul id="cart-items"></ul>
+            <p>Total: $<span id="cart-total">0.00</span></p>
+            </aside>
             </div>
 
         </nav>
@@ -731,7 +736,7 @@
 </footer>
 
         
-   
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="backend/products.js"></script>
     <script src="script.js"></script>

@@ -61,7 +61,7 @@ const modalCartButton =
                     <p class ="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)}</p>
                     <p class="product-description">${product.description}</p>
                     <p class= "product-price">KSh ${product.price.toLocaleString()}</p>
-                    <button type="button" class="add-to-cart-btn">Add to Cart</button>
+                    <button type="button" class="add-to-cart-btn" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
                     <button type="button" class="view-product" data-product-id="${product.id}">View Details</button>
                     </div>
                 </article>
@@ -181,13 +181,19 @@ function closeProductModal() {
 
 modalClose.addEventListener("click", closeProductModal);
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function addToCart(productId) {
   const product = products.find((p) => String(p.id) === String(productId));
   if (!product) return;
-  cart.push(product);
-  console.log("Cart:", cart);
+
+  const item = cart.find((i) => String(i.id) === String(productId));
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({ id: product.id, name: product.name, price: Number(product.price), qty: 1 });
+  }
+  saveCart();
 }
 
 modalCartButton.addEventListener("click", () => {
@@ -196,3 +202,45 @@ modalCartButton.addEventListener("click", () => {
 });
 
 displayProducts(products);
+
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart() {
+  $('#cart-count').text(cart.reduce((n, i) => n + i.qty, 0));
+  $('#cart-items').html(cart.map(i => `
+    <li>${i.name} × ${i.qty} – $${(i.price * i.qty).toFixed(2)}
+      <button class="remove" data-id="${i.id}">✕</button>
+    </li>`).join(''));
+  $('#cart-total').text(
+    cart.reduce((s, i) => s + i.price * i.qty, 0).toFixed(2)
+  );
+}
+
+$(document).on('click', '.add-to-cart-btn', function () {
+  console.log('clicked', $(this).data('id'));
+  addToCart($(this).data('id'));
+});
+
+// toggle panel
+$('#cart-btn').on('click', () => $('#cart-panel').toggleClass('hidden'));
+
+// add item (delegated, since cards are rendered dynamically)
+$(document).on('click', '.add-to-cart', function () {
+    addToCart($(this).data('id'));
+  const { id, name, price } = $(this).data();
+  const item = cart.find(i => i.id === id);
+  item ? item.qty++ : cart.push({ id, name, price: Number(price), qty: 1 });
+  saveCart();
+});
+
+$(document).on('click', '.remove', function () {
+  cart = cart.filter(i => i.id !== $(this).data('id'));
+  saveCart();
+});
+
+renderCart();
+
