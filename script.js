@@ -69,3 +69,36 @@ const modalCartButton =
         loadingMessage.style.display = "none"
             
 }
+displayProducts(products);
+
+console.log(productContainer, categoryFilter, sortProducts, loadingMessage, errorMessage, productModal, modalClose, modalCartButton);
+
+function updateProducts() {
+
+    const selectedCategory = categoryFilter.value;
+    const selectedSort = sortProducts.value;
+
+    let filteredProducts = [...products];
+
+    if (selectedCategory !== "all") {
+
+        filteredProducts = filteredProducts.filter((product) => {
+            return product.category === selectedCategory;
+        });
+    }
+
+    if (selectedSort === "price-low") {
+
+        filteredProducts.sort((a, b) => a.price - b.price);
+
+    } else if (selectedSort === "price-high") {
+
+        filteredProducts.sort((a, b) => b.price - a.price);
+
+    } else if (selectedSort === "rating") {
+
+        filteredProducts.sort((a, b) => b.rating - a.rating);
+    }
+
+    displayProducts(filteredProducts);
+}
