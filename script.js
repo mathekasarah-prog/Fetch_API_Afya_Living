@@ -220,15 +220,15 @@ modalClose.addEventListener("click", closeProductModal);
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function addToCart(productId) {
+function addToCart(productId, qty = 1) {
   const product = products.find((p) => String(p.id) === String(productId));
   if (!product) return;
 
   const item = cart.find((i) => String(i.id) === String(productId));
   if (item) {
-    item.qty++;
+    item.qty += qty;
   } else {
-    cart.push({ id: product.id, name: product.name, price: Number(product.price), qty: 1 });
+    cart.push({ id: product.id, name: product.name, price: Number(product.price), qty });
   }
   saveCart();
 }
@@ -285,6 +285,19 @@ $(document).on('click', '.qty-increase', function () {
   const item = cart.find(i => i.id === $(this).data('id'));
   if (item) item.qty++;
   saveCart();
+});
+
+$(document).on('click', '.qty-plus', function () {
+  const id = $(this).data('id');
+  const span = $(`.qty-value[data-id="${id}"]`);
+  span.text(Number(span.text()) + 1);
+});
+
+$(document).on('click', '.qty-minus', function () {
+  const id = $(this).data('id');
+  const span = $(`.qty-value[data-id="${id}"]`);
+  const newVal = Math.max(1, Number(span.text()) - 1);
+  span.text(newVal);
 });
 
 $(document).on('click', '.qty-decrease', function () {

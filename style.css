@@ -365,10 +365,15 @@ button {
     transition: 0.3s ease;
 }
 
-/*.qty-minus, qty-plus{
-    width: 10px;
-
-}*/
+.qty-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.qty-selector button {
+  width: 2rem;
+}
 
 .modal-cart-button{
     width: 100%;
