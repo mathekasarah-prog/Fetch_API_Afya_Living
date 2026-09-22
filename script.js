@@ -83,6 +83,11 @@ const newsletterStatus =
                     <p class ="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)}</p>
                     <p class="product-description">${product.description}</p>
                     <p class= "product-price">KSh ${product.price.toLocaleString()}</p>
+                    <div class = "qty-selector">
+                    <button type="button" class="qty-minus" data-id="${product.id}">-</button>
+                    <span class="qty-value" data-id="${product.id}">1</span>
+                    <button type="button" class="qty-plus" data-id="${product.id}">+</button>
+                    </div>
                     <button type="button" class="add-to-cart-btn" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
                     <button type="button" class="view-product" data-product-id="${product.id}">View Details</button>
                     </div>

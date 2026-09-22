@@ -365,6 +365,11 @@ button {
     transition: 0.3s ease;
 }
 
+/*.qty-minus, qty-plus{
+    width: 10px;
+
+}*/
+
 .modal-cart-button{
     width: 100%;
 
