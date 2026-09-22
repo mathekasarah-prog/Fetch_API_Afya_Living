@@ -12,12 +12,42 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/api/contact', (req, res) => {
+    console.log('Cart updated:', req.body.cart);
+  res.status(200).json({ success: true });
   const { name, email, message } = req.body;
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Missing fields' });
   }
   console.log('New contact message:', { name, email, message });
   // TODO: save to a file/db, or send an email, if you want persistence
+  res.status(200).json({ success: true });
+});
+
+const fs = require('fs');
+const path = require('path');
+
+app.post('/api/subscribe', (req, res) => {
+  const { email } = req.body;
+
+  if (!email || !email.includes('@')) {
+    return res.status(400).json({ error: 'Invalid email' });
+  }
+
+  const filePath = path.join(__dirname, 'subscribers.json');
+  let subscribers = [];
+
+  if (fs.existsSync(filePath)) {
+    subscribers = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  }
+
+  if (subscribers.includes(email)) {
+    return res.status(200).json({ success: true, message: 'Already subscribed' });
+  }
+
+  subscribers.push(email);
+  fs.writeFileSync(filePath, JSON.stringify(subscribers, null, 2));
+
+  console.log('New subscriber:', email);
   res.status(200).json({ success: true });
 });
 

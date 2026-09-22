@@ -52,6 +52,15 @@ const contactStatus =
 const contactSubmit = 
     document.querySelector(".form-button");
 
+const newsletterEmail = 
+    document.querySelector('#newsletter-email');
+
+const newsletterSubmit = 
+    document.querySelector('#newsletter-submit');
+
+const newsletterStatus = 
+    document.querySelector('#newsletter-status');
+
 
 
     function displayProducts(products){
@@ -230,6 +239,11 @@ displayProducts(products);
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
   renderCart();
+  fetch('http://localhost:3000/api/cart', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cart }),
+  }).catch(() => {}); // don't block the UI if this fails
 }
 
 function renderCart() {
@@ -283,6 +297,36 @@ $("#product-search").on("input", function () {
 });
 
 searchInput.addEventListener("input", updateProducts);
+
+newsletterSubmit.addEventListener('click', async () => {
+  const email = newsletterEmail.value.trim();
+
+  if (!email || !email.includes('@')) {
+    newsletterStatus.textContent = "Please enter a valid email address.";
+    return;
+  }
+
+  newsletterSubmit.disabled = true;
+  newsletterSubmit.textContent = "Subscribing...";
+
+  try {
+    const res = await fetch('http://localhost:3000/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+
+    if (!res.ok) throw new Error('Request failed');
+
+    newsletterStatus.textContent = "You're subscribed! Welcome to Afya Living.";
+    newsletterEmail.value = '';
+  } catch (err) {
+    newsletterStatus.textContent = "Something went wrong. Please try again.";
+  } finally {
+    newsletterSubmit.disabled = false;
+    newsletterSubmit.textContent = "Subscribe";
+  }
+});
 
 
 
