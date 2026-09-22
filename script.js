@@ -80,6 +80,7 @@ function updateProducts() {
 
     const selectedCategory = categoryFilter.value;
     const selectedSort = sortProducts.value;
+    const searchQuery = searchInput.value.trim().toLowerCase();
 
     let filteredProducts = [...products];
 
@@ -89,6 +90,15 @@ function updateProducts() {
             return product.category === selectedCategory;
         });
     }
+
+    if (searchQuery) {
+    filteredProducts = filteredProducts.filter((product) => {
+      return (
+        product.name.toLowerCase().includes(searchQuery) ||
+        product.description.toLowerCase().includes(searchQuery)
+      );
+    });
+  }
 
     if (selectedSort === "price-low") {
 
