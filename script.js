@@ -249,13 +249,18 @@ function saveCart() {
 function renderCart() {
   $('#cart-count').text(cart.reduce((n, i) => n + i.qty, 0));
   $('#cart-items').html(cart.map(i => `
-    <li>${i.name} × ${i.qty} – $${(i.price * i.qty).toFixed(2)}
+    <li>${i.name}
+      <button class="qty-decrease" data-id="${i.id}">-</button>
+      ${i.qty}
+      <button class="qty-increase" data-id="${i.id}">+</button>
+      — KSh ${(i.price * i.qty).toFixed(2)}
       <button class="remove" data-id="${i.id}">✕</button>
     </li>`).join(''));
   $('#cart-total').text(
     cart.reduce((s, i) => s + i.price * i.qty, 0).toFixed(2)
   );
 }
+
 
 $(document).on('click', '.add-to-cart-btn', function () {
   console.log('clicked', $(this).data('id'));
@@ -278,6 +283,7 @@ $(document).on('click', '.remove', function () {
   cart = cart.filter(i => i.id !== $(this).data('id'));
   saveCart();
 });
+
 
 renderCart();
 
