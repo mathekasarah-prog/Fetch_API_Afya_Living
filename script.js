@@ -262,3 +262,5 @@ $("#product-search").on("input", function () {
     searchProducts();
 });
 
+searchInput.addEventListener("input", updateProducts);
+
