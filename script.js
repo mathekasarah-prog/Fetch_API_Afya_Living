@@ -40,6 +40,9 @@ const modalDescription =
 const modalCartButton =
     document.querySelector(".modal-cart-button");
 
+const searchInput = 
+    document.querySelector("#product-search")
+
 
     function displayProducts(products){
         productContainer.innerHTML = "";
@@ -243,4 +246,19 @@ $(document).on('click', '.remove', function () {
 });
 
 renderCart();
+
+
+function searchProducts() {
+    const searchTerm = $("#product-search").val().toLowerCase();
+
+    const searchedProducts = products.filter(function (product) {
+        return product.name.toLowerCase().includes(searchTerm);
+    });
+
+    renderProducts(searchedProducts);
+}
+
+$("#product-search").on("input", function () {
+    searchProducts();
+});
 

@@ -356,6 +356,14 @@ button {
   display: flex;
 }
 
+#product-search{
+    border: none;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 25px;
+    transition: 0.3s ease;
+}
+
 .modal-cart-button{
     width: 100%;
 
