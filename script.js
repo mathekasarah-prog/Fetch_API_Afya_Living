@@ -270,21 +270,26 @@ $(document).on('click', '.add-to-cart-btn', function () {
 // toggle panel
 $('#cart-btn').on('click', () => $('#cart-panel').toggleClass('hidden'));
 
-// add item (delegated, since cards are rendered dynamically)
-$(document).on('click', '.add-to-cart', function () {
-    addToCart($(this).data('id'));
-  const { id, name, price } = $(this).data();
-  const item = cart.find(i => i.id === id);
-  item ? item.qty++ : cart.push({ id, name, price: Number(price), qty: 1 });
-  saveCart();
-});
 
 $(document).on('click', '.remove', function () {
   cart = cart.filter(i => i.id !== $(this).data('id'));
   saveCart();
 });
 
+$(document).on('click', '.qty-increase', function () {
+  const item = cart.find(i => i.id === $(this).data('id'));
+  if (item) item.qty++;
+  saveCart();
+});
 
+$(document).on('click', '.qty-decrease', function () {
+  const item = cart.find(i => i.id === $(this).data('id'));
+  if (item) {
+    item.qty--;
+    if (item.qty <= 0) cart = cart.filter(i => i.id !== item.id);
+  }
+  saveCart();
+});
 renderCart();
 
 
