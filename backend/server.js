@@ -11,6 +11,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+
+
 app.get("/", (request, response) => {
     response.send("Welcome to the Afya Living backend!");
 });

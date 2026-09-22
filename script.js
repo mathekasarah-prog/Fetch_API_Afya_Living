@@ -41,7 +41,17 @@ const modalCartButton =
     document.querySelector(".modal-cart-button");
 
 const searchInput = 
-    document.querySelector("#product-search")
+    document.querySelector("#product-search");
+
+const contactForm = 
+    document.querySelector(".contact-form");
+
+const contactStatus = 
+    document.querySelector("#contact-status");
+
+const contactSubmit = 
+    document.querySelector(".form-button");
+
 
 
     function displayProducts(products){
@@ -274,3 +284,38 @@ $("#product-search").on("input", function () {
 
 searchInput.addEventListener("input", updateProducts);
 
+
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.querySelector('#contact-name').value.trim();
+  const email = document.querySelector('#contact-email').value.trim();
+  const message = document.querySelector('#contact-message').value.trim();
+
+  if (!name || !email || !message) {
+    contactStatus.textContent = "Please fill in all fields.";
+    return;
+  }
+
+  contactSubmit.disabled = true;
+  contactSubmit.textContent = "Sending...";
+
+  try {
+    const res = await fetch('http://localhost:3000/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    if (!res.ok) throw new Error('Request failed');
+
+    contactStatus.textContent = "Message sent! We'll get back to you soon.";
+    contactForm.reset();
+  } catch (err) {
+    contactStatus.textContent = "Something went wrong. Please try again.";
+  } finally {
+    contactSubmit.disabled = false;
+    contactSubmit.textContent = "Send Message";
+  }
+});
