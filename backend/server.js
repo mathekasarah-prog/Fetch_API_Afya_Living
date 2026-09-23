@@ -1,4 +1,3 @@
-
 const express = require("express");
 
 const products = require("./products");
@@ -17,7 +16,7 @@ app.post('/api/contact', (req, res) => {
     return res.status(400).json({ error: 'Missing fields' });
   }
   console.log('New contact message:', { name, email, message });
-  // TODO: save to a file/db, or send an email, if you want persistence
+ 
   res.status(200).json({ success: true });
 });
 app.post('/api/cart', (req, res) => {
@@ -64,4 +63,33 @@ app.get("/api/products", (request, response) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+app.post('/api/orders', (req, res) => {
+  const { name, phone, address, cart } = req.body;
+  if (!name || !phone || !address || !cart || cart.length === 0) {
+    return res.status(400).json({ error: 'Missing order details' });
+  }
+
+  const filePath = path.join(__dirname, 'orders.json');
+  let orders = [];
+  if (fs.existsSync(filePath)) {
+    orders = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  }
+
+  const order = {
+    id: Date.now(),
+    name,
+    phone,
+    address,
+    cart,
+    total: cart.reduce((s, i) => s + i.price * i.qty, 0),
+    date: new Date().toISOString()
+  };
+
+  orders.push(order);
+  fs.writeFileSync(filePath, JSON.stringify(orders, null, 2));
+
+  console.log('New order:', order);
+  res.status(200).json({ success: true, orderId: order.id });
 });

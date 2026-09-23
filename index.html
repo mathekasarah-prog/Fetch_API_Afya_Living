@@ -40,7 +40,8 @@
                 <aside id="cart-panel" class="hidden">
             <h3>Your Cart</h3>
             <ul id="cart-items"></ul>
-            <p>Total: $<span id="cart-total">0.00</span></p>
+            <p>Total: <span id="cart-total">0.00</span></p>
+            <button id="checkout-btn">Checkout</button>
             </aside>
             </div>
 
@@ -610,7 +611,6 @@
                 src="Images/baobab.jpeg"
                 alt="Product image"
             >
-
         </div>
 
         <div class="modal-info">
@@ -659,6 +659,33 @@
     </div>
 
 </div>
+
+
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="product-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="checkout-modal-close" type="button">&times;</button>
+        <h2>Checkout</h2>
+
+        <div id="checkout-summary"></div>
+
+        <form id="checkout-form">
+          <label>Full Name
+            <input type="text" id="checkout-name" required>
+          </label>
+          <label>Phone Number
+            <input type="tel" id="checkout-phone" required>
+          </label>
+          <label>Delivery Address
+            <textarea id="checkout-address" required></textarea>
+          </label>
+          <button type="submit" id="checkout-submit">Place Order</button>
+        </form>
+        <p id="checkout-status"></p>
+      </div>
+    </div>
+
 
 
 <!-- Footer -->
