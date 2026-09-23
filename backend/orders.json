@@ -60,5 +60,61 @@
     ],
     "total": 7300,
     "date": "2026-09-23T02:19:36.599Z"
+  },
+  {
+    "id": 1790160443287,
+    "name": "Sarah Matheka",
+    "phone": "0703318383",
+    "address": "Donholm",
+    "cart": [
+      {
+        "id": 1,
+        "name": "Baobab Body Oil",
+        "price": 1200,
+        "qty": 1
+      },
+      {
+        "id": 2,
+        "name": "Shea Glow Body Butter",
+        "price": 950,
+        "qty": 1
+      }
+    ],
+    "total": 2150,
+    "date": "2026-09-23T10:47:23.287Z"
+  },
+  {
+    "id": 1790161497596,
+    "name": "Sarah Matheka",
+    "phone": "0703318383",
+    "address": "Atlanta 46",
+    "cart": [
+      {
+        "id": 1,
+        "name": "Baobab Body Oil",
+        "price": 1200,
+        "qty": 2
+      },
+      {
+        "id": 2,
+        "name": "Shea Glow Body Butter",
+        "price": 950,
+        "qty": 2
+      },
+      {
+        "id": 3,
+        "name": "African Black Soap",
+        "price": 650,
+        "qty": 2
+      },
+      {
+        "id": 4,
+        "name": "Rosemary Hair Oil",
+        "price": 1100,
+        "qty": 1
+      }
+    ],
+    "total": 6700,
+    "date": "2026-09-23T11:04:57.596Z"
   }
 ]

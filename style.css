@@ -199,6 +199,14 @@ button {
   background-color: #5f6e4a;
 }
 
+#checkout-status.success {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 12px;
+}
+
 /* Overlay - covers the whole screen, dims background */
 .product-modal {
     display: none;

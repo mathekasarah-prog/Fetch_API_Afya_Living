@@ -83,4 +83,6 @@ const products = [
             "A thoughtful bath set for a relaxing self-care experience or a special gift."
     }
     
-]
+]; 
+
+module.exports = products;
