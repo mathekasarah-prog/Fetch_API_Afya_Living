@@ -1,136 +1,156 @@
-# 🌿 Afya Living — Natural Wellness & Self-Care E-Commerce Website
+# Afya Living 🌿
 
-> **Afya Living** is a responsive full-stack e-commerce web application for showcasing and purchasing natural beauty, wellness, and self-care products inspired by nature and African wellness traditions.
+A responsive e-commerce platform for natural wellness and self-care products, inspired by African wellness traditions. Built as a full-stack project featuring dynamic product rendering, cart management, user authentication, and order checkout.
 
----
+*Live demo:* http://127.0.0.1:5501 (via Live Server)
+*Backend:* http://localhost:3000
 
-## 📖 Table of Contents
+---<img width="640" height="764" alt="Screenshot 2026-09-24 234410" src="https://github.com/user-attachments/assets/d5253288-5180-4866-b4c3-8208f3ee6db9" />
 
-- [About the Project](#-about-the-project)
-- [Project Objectives](#-project-objectives)
-- [Features](#-features)
-- [Technologies Used](#-technologies-used)
-- [Project Structure](#-project-structure)
-- [How the Application Works](#-how-the-application-works)
-- [Frontend](#-frontend)
-- [Backend](#-backend)
-- [API Endpoints](#-api-endpoints)
-- [Product Data](#-product-data)
-- [Shopping Cart](#-shopping-cart)
-- [Search, Filtering and Sorting](#-search-filtering-and-sorting)
-- [User Authentication](#-user-authentication)
-- [Checkout and Orders](#-checkout-and-orders)
-- [Newsletter Subscription](#-newsletter-subscription)
-- [Contact Form](#-contact-form)
-- [Data Storage](#-data-storage)
-- [Responsive Design](#-responsive-design)
-- [Accessibility](#-accessibility)
-- [Installation and Setup](#-installation-and-setup)
-- [Running the Project](#-running-the-project)
-- [Screenshots](#-screenshots)
-- [Testing](#-testing)
-- [Future Improvements](#-future-improvements)
-- [Learning Outcomes](#-learning-outcomes)
-- [Author](#-author)
-- [License](#-license)
 
----
+## 📖 About
 
-# 🌱 About the Project
+Afya Living is a fictional online shop selling skincare, hair care, and wellness products (body oils, butters, soaps, candles, bath sets). The project demonstrates a complete shopping flow — from browsing products through account creation to placing an order — using vanilla JavaScript and jQuery on the frontend, with a lightweight Node.js/Express backend.
 
-Afya Living is a natural wellness and self-care e-commerce website designed to provide customers with a simple and engaging online shopping experience.
+---<img width="640" height="764" alt="Screenshot 2026-09-24 234559" src="https://github.com/user-attachments/assets/2a90ccf9-8bc2-4979-8565-7aeddd8759e0" />
 
-The website showcases products such as:
 
-- Natural skincare products
-- Hair-care products
-- Wellness products
-- Gift sets
+## ✨ Features
 
-The project started as a frontend product showcase and was expanded into a more interactive full-stack application using JavaScript, jQuery, AJAX, Fetch API, Node.js and Express.
+- *Product catalog* — dynamically fetched from a backend API and rendered on the page
+- *Search* — filter products by name or description as you type
+- *Category filter* — narrow products by category (Skin Care, Hair Care, Wellness)
+- *Sorting* — sort by price (low → high, high → low) or by rating
+- *Product detail modal* — view full details, rating, and reviews for any product
+- *Quantity selector* — adjust quantity per product before adding to cart
+- *Shopping cart*
+  - Add, remove, and adjust quantities of items
+  - Live-updating subtotal and total
+  - Persists across page reloads via localStorage
+- *User accounts*
+  - Sign up and log in with hashed passwords (bcrypt)
+  - Checkout is gated behind login — guests are prompted to create an account or sign in
+- *Checkout*
+  - Order summary with itemized pricing
+  - Choice of delivery method (home delivery or store pickup)
+  - Delivery address required only for home delivery
+  - Toast-style success confirmation, no jarring browser alerts
+- *Newsletter subscription* — collects and stores subscriber emails
+- *Contact form* — sends messages to the backend for follow-up
+- *Order storage* — completed orders are saved server-side with customer and cart details
 
-The application allows users to browse products, search for products, filter products by category, sort products, view product details, add products to a shopping cart, create an account, log in, subscribe to a newsletter, submit contact messages and place orders.
+---<img width="640" height="764" alt="Screenshot 2026-09-24 234658" src="https://github.com/user-attachments/assets/6ac09cb0-76d3-46be-a2a8-c6b418935711" />
 
----
 
-# 🎯 Project Objectives
+## 🛠️ Tech Stack
 
-The main objectives of the Afya Living project were to:
+*Frontend*
+- HTML5, CSS3
+- JavaScript (ES6+)
+- jQuery
 
-- Build a responsive e-commerce website.
-- Practice semantic HTML and CSS.
-- Use JavaScript to add interactivity.
-- Connect a frontend application to a backend API.
-- Learn how REST-style API communication works.
-- Practice AJAX and the Fetch API.
-- Work with JSON data.
-- Implement product search, filtering and sorting.
-- Create an interactive shopping cart.
-- Use browser `localStorage`.
-- Build user registration and login functionality.
-- Practice password hashing with bcrypt.
-- Create backend API endpoints using Express.
-- Store application data using JSON files.
-- Practice asynchronous JavaScript.
-- Build a complete frontend-to-backend workflow.
+*Backend*
+- Node.js
+- Express.js
+- bcrypt (password hashing)
+- CORS
+
+*Data storage*
+- JSON files (products.js, orders.json, users.json, subscribers.json) — no external database required
 
 ---
 
-# ✨ Features
+## 📁 Project Structure
 
-## 🛍️ Product Showcase
 
-The website displays a collection of wellness and self-care products.
+Fetch_API_Afya_Living/
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   └── Images/
+│       └── (product images)
+└── backend/
+    ├── server.js
+    ├── products.js
+    ├── orders.json
+    ├── users.json
+    └── subscribers.json
 
-Each product includes:
-
-- Product image
-- Product name
-- Category
-- Price
-- Rating
-- Number of reviews
-- Product description
-- Optional badge such as `Bestseller` or `New`
-- Add to Cart functionality
-- View Details functionality
 
 ---
 
-## 🔎 Product Search
+## 🚀 Getting Started
 
-Users can search for products using the search input.
+### Prerequisites
+- [Node.js](https://nodejs.org/) installed
+- A code editor (e.g. VS Code) with a live server extension (e.g. Live Server)
 
-The search functionality checks product information and dynamically updates the displayed products.
-
-For example, searching for:
-
-```text
-Baobab
-can display:Baobab Body Oil
-The search is case-insensitive.
-
-##Category Filtering
-
-Users can filter products by category.
-
-Available categories include:
-
-Skin Care
-Hair Care
-Wellness
-Gift Sets
-
-The filtering functionality uses JavaScript's .filter() method to create a new list containing only products that match the selected category.
-
-##↕️ Product Sorting
-
-Users can sort products according to different criteria, including:
-
-Price: Low to High
-Price: High to Low
-Rating
-
-JavaScript's .sort() method is used to rearrange the product list dynamically.
+### 1. Clone the repository
+bash
+git clone <your-repo-url>
+cd Fetch_API_Afya_Living
 
 
+### 2. Set up the backend
+bash
+cd backend
+npm install
+node server.js
+
+The server will start on http://localhost:3000.
+
+### 3. Set up the frontend
+Open frontend/index.html with Live Server (or any static file server). By default it runs on http://127.0.0.1:5501.
+
+> *Note:* The frontend expects the backend to be running on http://localhost:3000. Make sure both are running simultaneously.
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|-----------|-------------|
+| GET | /api/products | Returns the full product catalog |
+| POST | /api/signup | Creates a new user account |
+| POST | /api/login | Authenticates an existing user |
+| POST | /api/cart | Logs/stores the current cart state |
+| POST | /api/orders | Submits a completed order |
+| POST | /api/subscribe | Adds an email to the newsletter list |
+| POST | /api/contact | Submits a contact form message |
+
+---
+
+## 🖥️ Usage Walkthrough
+
+1. Browse products on the shop page — filter, sort, or search as needed
+2. Click *View Details* to see a product's full description and rating
+3. Adjust quantity and click 3. *Add to Cart*
+4. Click the *Cart* button in the nav to review your items
+5. Click *Checkout* — if not logged in, you'll be prompted to sign up or log in
+6. Fill in your name, phone number, delivery method, and address (if applicable)
+7. Submit the order and receive a confirmation message
+
+---
+
+## 🔮 Future Improvements
+
+- Persist login sessions with JWT instead of client-side localStorage
+- Move from JSON file storage to a proper database (MongoDB/PostgreSQL)
+- Add an admin dashboard for managing products and viewing orders
+- Add order history for logged-in users
+- Integrate real payment processing (e.g. M-Pesa, Stripe)
+- Add product image zoom and multiple product images per item
+
+---
+
+## 👩‍💻 Author
+
+*Sarah Matheka*
+Built as part of a full-stack software engineering bootcamp.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
