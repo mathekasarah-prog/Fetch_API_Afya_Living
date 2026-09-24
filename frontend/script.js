@@ -62,15 +62,13 @@ const newsletterStatus =
     document.querySelector('#newsletter-status');
 
     
-    // ============================================================
 // STATE
-// ============================================================
+
 let products = [];
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// ============================================================
-// FETCH (runs once, on page load)
-// ============================================================
+
+// FETCH 
 function getProducts() {
     $("#loading-message").text("Loading products...");
     $("#error-message").text("");
@@ -81,9 +79,9 @@ function getProducts() {
         dataType: "json"
     })
     .done(function (data) {
-        products = data;              // assign the OUTER products array
+        products = data;              
         $("#loading-message").text("");
-        displayProducts(products);    // initial render, full list
+        displayProducts(products);   
     })
     .fail(function (xhr) {
         $("#loading-message").text("");
@@ -91,9 +89,8 @@ function getProducts() {
     });
 }
 
-// ============================================================
-// RENDER (single source of truth — takes whatever list you give it)
-// ============================================================
+
+// RENDER 
 function displayProducts(list) {
     $("#product-container").empty();
 
@@ -123,9 +120,8 @@ function displayProducts(list) {
     });
 }
 
-// ============================================================
 // FILTER / SORT / SEARCH
-// ============================================================
+
 function updateProducts() {
     const selectedCategory = categoryFilter.value;
     const selectedSort = sortProducts.value;
@@ -162,12 +158,9 @@ function updateProducts() {
 categoryFilter.addEventListener("change", updateProducts);
 sortProducts.addEventListener("change", updateProducts);
 searchInput.addEventListener("input", updateProducts);
-// (old searchProducts()/renderProducts()/#product-search wiring removed —
-// updateProducts() already covers search, plus respects category + sort together)
 
-// ============================================================
+
 // PRODUCT MODAL
-// ============================================================
 function openProductModal(productId) {
     const product = products.find((item) => String(item.id) === String(productId));
     if (!product) return;
@@ -201,7 +194,7 @@ productModal.addEventListener("click", (event) => {
     }
 });
 
-// single delegated listener (was duplicated before)
+
 productContainer.addEventListener("click", (event) => {
     const button = event.target.closest(".view-product");
     if (!button) return;
@@ -215,9 +208,7 @@ modalCartButton.addEventListener("click", () => {
     closeProductModal();
 });
 
-// ============================================================
 // CART
-// ============================================================
 function addToCart(productId, qty = 1) {
     const product = products.find((p) => String(p.id) === String(productId));
     if (!product) return;
@@ -238,7 +229,7 @@ function saveCart() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cart }),
-    }).catch(() => {}); // don't block the UI if this fails
+    }).catch(() => {});
 }
 
 function renderCart() {
@@ -284,8 +275,6 @@ $(document).on('click', '.qty-decrease', function () {
     saveCart();
 });
 
-// these control the qty stepper ON the product card (before "Add to Cart" is clicked) —
-// separate from qty-increase/qty-decrease, which edit quantities already in the cart
 $(document).on('click', '.qty-plus', function () {
     const id = $(this).data('id');
     const span = $(`.qty-value[data-id="${id}"]`);
@@ -299,9 +288,8 @@ $(document).on('click', '.qty-minus', function () {
     span.text(newVal);
 });
 
-// ============================================================
 // CHECKOUT
-// ============================================================
+
 $('#checkout-btn').on('click', () => {
     if (cart.length === 0) {
         alert('Your cart is empty.');
@@ -313,7 +301,7 @@ $('#checkout-btn').on('click', () => {
     const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
     $('#checkout-summary').html(summary + `<p><strong>Total: KSh ${total.toLocaleString()}</strong></p>`);
     $('#checkout-modal').addClass('active');
-    $('#cart-panel').addClass('hidden'); // close cart panel when checkout opens
+    $('#cart-panel').addClass('hidden'); 
 });
 
 $('#checkout-modal-close').on('click', () => {
@@ -354,9 +342,8 @@ $('#checkout-form').on('submit', async function (e) {
     }
 });
 
-// ============================================================
 // NEWSLETTER
-// ============================================================
+
 newsletterSubmit.addEventListener('click', async () => {
     const email = newsletterEmail.value.trim();
 
@@ -421,10 +408,8 @@ contactForm.addEventListener('submit', async (e) => {
     }
 });
 
-// ============================================================
 // KICKOFF
-// ============================================================
 $(function () {
-    getProducts();   // fetch products once DOM is ready, then render them
-    renderCart();     // paint whatever was already saved in localStorage
+    getProducts();  
+    renderCart();     
 });
