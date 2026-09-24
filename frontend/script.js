@@ -1,3 +1,15 @@
+function showToast(message, type = 'info') {
+  const toast = $(`<div class="toast ${type}">${message}</div>`);
+  $('#toast-container').append(toast);
+
+  setTimeout(() => toast.addClass('show'), 10);
+
+  setTimeout(() => {
+    toast.removeClass('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
 // ---- DOM references ----
 const productContainer = document.querySelector('#product-container'); // adjust to your actual container ID
 const loadingMessage = document.querySelector('#loading-message');
@@ -197,6 +209,7 @@ $(document).on('click', '.add-to-cart-btn', function () {
   const qtySpan = $(`.qty-value[data-id="${id}"]`);
   const qty = qtySpan.length ? Number(qtySpan.text()) : 1;
   addToCart(id, qty);
+  showToast('Added to cart!', 'success');
 });
 
 $('#cart-btn').on('click', () => $('#cart-panel').toggleClass('hidden'));
@@ -329,16 +342,25 @@ $('#login-form').on('submit', async function (e) {
 });
 
 // ---- Checkout (gated by login) ----
-$('#checkout-btn').on('click', () => {
+    $('#checkout-btn').on('click', () => {
   if (cart.length === 0) {
-    alert('Your cart is empty.');
+    showToast('Your cart is empty.', 'error');
     return;
   }
   if (!currentUser) {
-    alert('Please log in or sign up to place an order.');
+    showToast('Please log in or sign up to place an order.', 'error');
     $('#auth-modal').addClass('active');
     return;
   }
+
+  const summary = cart.map(i =>
+    `<p>${i.name} x${i.qty} — KSh ${(i.price * i.qty).toLocaleString()}</p>`
+  ).join('');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  $('#checkout-summary').html(summary + `<p><strong>Total: KSh ${total.toLocaleString()}</strong></p>`);
+  $('#checkout-status').text('').removeClass('success');
+  $('#checkout-modal').addClass('active');
+});
 
   const summary = cart.map(i =>
     `<p>${i.name} x${i.qty} — KSh ${(i.price * i.qty).toLocaleString()}</p>`

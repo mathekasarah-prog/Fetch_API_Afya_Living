@@ -657,7 +657,58 @@ button {
 .auth-switch a:hover {
   text-decoration: underline;
 }
+.hidden{
+    display: none;
+}
 
+#auth-modal .modal-content {
+  max-width: 400px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 36px 32px;
+  border-radius: 16px;
+  background: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #333;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 320px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast.success {
+  background: #7b8b62;
+}
+
+.toast.error {
+  background: #b3382c;
+}
 .price {
     font-size: 1.15rem;
     font-weight: 700;
