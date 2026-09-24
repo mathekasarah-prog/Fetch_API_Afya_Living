@@ -250,5 +250,35 @@
     ],
     "total": 4000,
     "date": "2026-09-24T12:05:28.040Z"
+  },
+  {
+    "id": 1790252052954,
+    "name": "Sarah Matheka",
+    "phone": "0703318383",
+    "deliveryMethod": "delivery",
+    "address": "Donholm suite 34",
+    "userId": 1790229841101,
+    "cart": [
+      {
+        "id": 1,
+        "name": "Baobab Body Oil",
+        "price": 1200,
+        "qty": 2
+      },
+      {
+        "id": 3,
+        "name": "African Black Soap",
+        "price": 650,
+        "qty": 1
+      },
+      {
+        "id": 6,
+        "name": "Lavender Bath Set",
+        "price": 1800,
+        "qty": 1
+      }
+    ],
+    "total": 4850,
+    "date": "2026-09-24T12:14:12.954Z"
   }
 ]
