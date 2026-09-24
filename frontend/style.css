@@ -535,8 +535,11 @@ button {
 }
 
 
-.product-info .price {
-    color: #293127;
+.product-info .product-price {
+    color: #2c671d;
+}
+.product-info .product-rating{
+     color: #c49a45;
 }
 
 .product-modal {
