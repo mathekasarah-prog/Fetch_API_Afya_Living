@@ -652,8 +652,18 @@ button {
 
 #auth-status {
   margin-top: 12px;
-  color: #b3382c;
+  color: #2cb345;
   font-size: 0.9rem;
+}
+#auth-btn{
+    border: none;
+    width: 100px;
+    margin-left: 20px;
+    background-color: #7b8b62;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 25px;
+    transition: 0.3s ease;
 }
 
 .auth-switch {
