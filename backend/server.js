@@ -93,3 +93,49 @@ app.post('/api/orders', (req, res) => {
   console.log('New order:', order);
   res.status(200).json({ success: true, orderId: order.id });
 });
+
+const bcrypt = require('bcrypt');
+
+// Sign up
+app.post('/api/signup', async (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: 'Missing fields' });
+  }
+
+  const filePath = path.join(__dirname, 'users.json');
+  let users = [];
+  if (fs.existsSync(filePath)) {
+    users = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  }
+
+  if (users.find(u => u.email === email)) {
+    return res.status(400).json({ error: 'Email already registered' });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = { id: Date.now(), name, email, password: hashedPassword };
+  users.push(user);
+  fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
+
+  res.status(200).json({ success: true, user: { id: user.id, name: user.name, email: user.email } });
+});
+
+// Log in
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+  const filePath = path.join(__dirname, 'users.json');
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(400).json({ error: 'Invalid email or password' });
+  }
+
+  const users = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  const user = users.find(u => u.email === email);
+
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(400).json({ error: 'Invalid email or password' });
+  }
+
+  res.status(200).json({ success: true, user: { id: user.id, name: user.name, email: user.email } });
+});

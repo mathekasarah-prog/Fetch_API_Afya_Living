@@ -34,9 +34,10 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="cart-button" type="button">
+                <button class="cart-button" id="cart-btn" type="button">
                     🛒 Cart <span id="cart-count">0</span>
                 </button>
+                <button id="auth-btn" type="button">Login</button>
                 <aside id="cart-panel" class="hidden">
             <h3>Your Cart</h3>
             <ul id="cart-items"></ul>
@@ -687,6 +688,42 @@
         <p id="checkout-status"></p>
       </div>
     </div>
+
+    <div id="auth-modal" class="product-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="auth-modal-close" type="button">&times;</button>
+
+    <div class="auth-tabs">
+      <button type="button" id="show-login-tab" class="auth-tab active">Log In</button>
+      <button type="button" id="show-signup-tab" class="auth-tab">Sign Up</button>
+    </div>
+
+    <form id="login-form" class="auth-form">
+      <label>Email
+        <input type="email" id="login-email" required>
+      </label>
+      <label>Password
+        <input type="password" id="login-password" required>
+      </label>
+      <button type="submit" id="login-submit">Log In</button>
+    </form>
+
+    <form id="signup-form" class="auth-form hidden">
+      <label>Full Name
+        <input type="text" id="signup-name" required>
+      </label>
+      <label>Email
+        <input type="email" id="signup-email" required>
+      </label>
+      <label>Password
+        <input type="password" id="signup-password" required minlength="6">
+      </label>
+      <button type="submit" id="signup-submit">Sign Up</button>
+    </form>
+
+    <p id="auth-status"></p>
+  </div>
+</div>
 
 
 
