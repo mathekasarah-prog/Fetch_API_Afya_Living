@@ -369,18 +369,33 @@ $('#login-form').on('submit', async function (e) {
   $('#checkout-summary').html(summary + `<p><strong>Total: KSh ${total.toLocaleString()}</strong></p>`);
   $('#checkout-status').text('').removeClass('success');
   $('#checkout-modal').addClass('active');
-});
+
 
 $('#checkout-modal-close').on('click', () => $('#checkout-modal').removeClass('active'));
 
+$('#checkout-delivery').on('change', function () {
+  if ($(this).val() === 'pickup') {
+    $('#address-label').hide();
+  } else {
+    $('#address-label').show();
+  }
+});
+
 $('#checkout-form').on('submit', async function (e) {
   e.preventDefault();
+
   const name = $('#checkout-name').val().trim();
   const phone = $('#checkout-phone').val().trim();
+  const deliveryMethod = $('#checkout-delivery').val();
   const address = $('#checkout-address').val().trim();
 
-  if (!name || !phone || !address) {
+  if (!name || !phone || !deliveryMethod) {
     $('#checkout-status').text('Please fill in all fields.');
+    return;
+  }
+
+  if (deliveryMethod === 'delivery' && !address) {
+    $('#checkout-status').text('Please enter a delivery address.');
     return;
   }
 
@@ -390,22 +405,33 @@ $('#checkout-form').on('submit', async function (e) {
     const res = await fetch('http://localhost:3000/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, address, cart, userId: currentUser?.id })
+      body: JSON.stringify({ name, phone, deliveryMethod, address, cart, userId: currentUser?.id })
     });
     if (!res.ok) throw new Error('Order failed');
 
-    $('#checkout-status').text('Order successful!').addClass('success');
-    cart = [];
-    saveCart();
-    $('#checkout-form')[0].reset();
-    setTimeout(() => $('#checkout-modal').removeClass('active'), 2000);
+    $('#checkout-form').hide();
+$('#checkout-summary').hide();
+$('#checkout-status')
+  .text("Order successful! We'll get in touch once it's ready. Thank you!")
+  .addClass('success');
+
+cart = [];
+saveCart();
+
+setTimeout(() => {
+  $('#checkout-modal').removeClass('active');
+  $('#checkout-form')[0].reset();
+  $('#checkout-form').show();
+  $('#checkout-summary').show();
+  $('#checkout-status').text('').removeClass('success');
+  $('#address-label').show();
+}, 2500);
   } catch (err) {
     $('#checkout-status').text('Something went wrong. Please try again.');
   } finally {
     $('#checkout-submit').prop('disabled', false).text('Place Order');
   }
 });
-
 // ---- Newsletter ----
 newsletterSubmit.addEventListener('click', async () => {
   const email = newsletterEmail.value.trim();

@@ -284,10 +284,25 @@ button {
     box-sizing: border-box;
     font-weight: normal;
 }
+#checkout-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
 
 #checkout-form textarea {
     min-height: 70px;
     resize: vertical;
+}
+
+#checkout-status.success {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px 10px;
 }
 
 #checkout-submit {

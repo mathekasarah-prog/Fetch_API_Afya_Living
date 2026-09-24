@@ -66,9 +66,13 @@ app.listen(PORT, () => {
 });
 
 app.post('/api/orders', (req, res) => {
-  const { name, phone, address, cart } = req.body;
-  if (!name || !phone || !address || !cart || cart.length === 0) {
+  const { name, phone, deliveryMethod, address, cart, userId } = req.body;
+
+  if (!name || !phone || !deliveryMethod || !cart || cart.length === 0) {
     return res.status(400).json({ error: 'Missing order details' });
+  }
+  if (deliveryMethod === 'delivery' && !address) {
+    return res.status(400).json({ error: 'Address required for delivery' });
   }
 
   const filePath = path.join(__dirname, 'orders.json');
@@ -81,7 +85,9 @@ app.post('/api/orders', (req, res) => {
     id: Date.now(),
     name,
     phone,
-    address,
+    deliveryMethod,
+    address: deliveryMethod === 'delivery' ? address : null,
+    userId,
     cart,
     total: cart.reduce((s, i) => s + i.price * i.qty, 0),
     date: new Date().toISOString()
@@ -90,7 +96,6 @@ app.post('/api/orders', (req, res) => {
   orders.push(order);
   fs.writeFileSync(filePath, JSON.stringify(orders, null, 2));
 
-  console.log('New order:', order);
   res.status(200).json({ success: true, orderId: order.id });
 });
 

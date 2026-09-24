@@ -674,18 +674,29 @@
         <div id="checkout-summary"></div>
 
         <form id="checkout-form">
-          <label>Full Name
-            <input type="text" id="checkout-name" required>
-          </label>
-          <label>Phone Number
-            <input type="tel" id="checkout-phone" required>
-          </label>
-          <label>Delivery Address
-            <textarea id="checkout-address" required></textarea>
-          </label>
-          <button type="submit" id="checkout-submit">Place Order</button>
-        </form>
-        <p id="checkout-status"></p>
+  <label>Full Name
+    <input type="text" id="checkout-name" required>
+  </label>
+  <label>Phone Number
+    <input type="tel" id="checkout-phone" required>
+  </label>
+
+  <label>Delivery Method
+    <select id="checkout-delivery" required>
+      <option value="">Select an option</option>
+      <option value="delivery">Home Delivery</option>
+      <option value="pickup">Store Pickup</option>
+    </select>
+  </label>
+
+  <label id="address-label">Delivery Address
+    <textarea id="checkout-address"></textarea>
+  </label>
+
+  <button type="submit" id="checkout-submit">Place Order</button>
+</form>
+
+     <p id="checkout-status"></p>
       </div>
     </div>
 

@@ -172,5 +172,83 @@
     ],
     "total": 5200,
     "date": "2026-09-24T06:16:19.701Z"
+  },
+  {
+    "id": 1790251441901,
+    "name": "Sarah Matheka",
+    "phone": "0703318383",
+    "deliveryMethod": "delivery",
+    "address": "Donholm suite 34",
+    "userId": 1790229841101,
+    "cart": [
+      {
+        "id": 3,
+        "name": "African Black Soap",
+        "price": 650,
+        "qty": 1
+      },
+      {
+        "id": 4,
+        "name": "Rosemary Hair Oil",
+        "price": 1100,
+        "qty": 1
+      },
+      {
+        "id": 5,
+        "name": "Sandalwood Scented Candle",
+        "price": 1500,
+        "qty": 1
+      },
+      {
+        "id": 6,
+        "name": "Lavender Bath Set",
+        "price": 1800,
+        "qty": 1
+      },
+      {
+        "id": 1,
+        "name": "Baobab Body Oil",
+        "price": 1200,
+        "qty": 1
+      },
+      {
+        "id": 2,
+        "name": "Shea Glow Body Butter",
+        "price": 950,
+        "qty": 2
+      }
+    ],
+    "total": 8150,
+    "date": "2026-09-24T12:04:01.901Z"
+  },
+  {
+    "id": 1790251528040,
+    "name": "Sarah Matheka",
+    "phone": "0703318383",
+    "deliveryMethod": "delivery",
+    "address": "Donholm suite 34",
+    "userId": 1790229841101,
+    "cart": [
+      {
+        "id": 1,
+        "name": "Baobab Body Oil",
+        "price": 1200,
+        "qty": 2
+      },
+      {
+        "id": 2,
+        "name": "Shea Glow Body Butter",
+        "price": 950,
+        "qty": 1
+      },
+      {
+        "id": 3,
+        "name": "African Black Soap",
+        "price": 650,
+        "qty": 1
+      }
+    ],
+    "total": 4000,
+    "date": "2026-09-24T12:05:28.040Z"
   }
 ]
