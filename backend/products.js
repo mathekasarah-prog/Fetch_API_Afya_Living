@@ -74,7 +74,7 @@ const products = [
         id: 6,
         name: "Lavender Bath Set",
         price: 1800,
-        category: "Wellness",
+        category: "Gift Sets",
         rating: 5,
         reviews: 24,
         badge: "New",
