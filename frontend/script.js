@@ -260,19 +260,26 @@ $('#auth-btn').on('click', () => {
 
 $('#auth-modal-close').on('click', () => $('#auth-modal').removeClass('active'));
 
-$('#show-login-tab').on('click', function () {
-  $('#login-form').removeClass('hidden');
-  $('#signup-form').addClass('hidden');
-  $('#show-login-tab').addClass('active');
-  $('#show-signup-tab').removeClass('active');
-  $('#auth-status').text('');
-});
+let showingSignup = true;
 
-$('#show-signup-tab').on('click', function () {
-  $('#signup-form').removeClass('hidden');
-  $('#login-form').addClass('hidden');
-  $('#show-signup-tab').addClass('active');
-  $('#show-login-tab').removeClass('active');
+$('#auth-switch-link').on('click', function (e) {
+  e.preventDefault();
+  showingSignup = !showingSignup;
+
+  if (showingSignup) {
+    $('#signup-form').removeClass('hidden');
+    $('#login-form').addClass('hidden');
+    $('#auth-heading').text('Create your account');
+    $('#switch-text').text('Already have an account?');
+    $(this).text('Sign In');
+  } else {
+    $('#login-form').removeClass('hidden');
+    $('#signup-form').addClass('hidden');
+    $('#auth-heading').text('Welcome back');
+    $('#switch-text').text("Don't have an account?");
+    $(this).text('Create one');
+  }
+
   $('#auth-status').text('');
 });
 

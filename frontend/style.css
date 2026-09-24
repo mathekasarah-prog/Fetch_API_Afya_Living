@@ -594,54 +594,40 @@ button {
     display: none;
 }
 
-.auth-tabs {
-  display: flex;
-  gap: 8px;
+.auth-card {
+  max-width: 380px;
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.auth-card h2 {
+  font-size: 1.4rem;
   margin-bottom: 20px;
 }
 
-.auth-tab {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background: #eee;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-
-.auth-tab.active {
-  background-color: #7b8b62;
-  color: white;
-}
-
-.auth-form label {
-  display: block;
-  margin-bottom: 14px;
-  font-weight: 600;
-  font-size: 0.9rem;
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .auth-form input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
 }
 
 .auth-form button[type="submit"] {
-  width: 100%;
-  padding: 12px;
+  padding: 13px;
   background-color: #7b8b62;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 6px;
   transition: 0.3s ease;
 }
 
@@ -650,12 +636,27 @@ button {
 }
 
 #auth-status {
-  text-align: center;
-  color: #b3382c;
   margin-top: 12px;
+  color: #b3382c;
   font-size: 0.9rem;
 }
 
+.auth-switch {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.auth-switch a {
+  color: #7b8b62;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
 
 .price {
     font-size: 1.15rem;
