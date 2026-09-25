@@ -570,6 +570,14 @@ button {
   display: flex;
 }
 
+.product-modal .modal-content {
+  max-width: 720px;
+  width: 90%;
+  display: flex;
+  gap: 32px;
+  padding: 32px;
+}
+
 #product-search{
     border: none;
     color: #100f0fcb;
